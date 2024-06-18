@@ -7,8 +7,8 @@
   - [2.1 process_single_corpus.py文件](#process_single_corpuspy文件)
   - [2.2 word_dict.py文件](#word_dictpy文件)
   - [2.3 python_structured.py文件](#python_structuredpy文件)
-  - [2.4 sql_structured.py文件](#sql_structuredpy文件)
-  - [2.5 getSru2Vec.py文件](#getsru2vecpy文件)
+  - [2.4 sqlang_structured.py文件](#sqlang_structuredpy文件)
+  - [2.5 getStru2Vec.py文件](#getStru2Vecpy文件)
   - [2.6 embddings_process.py文件](#embddings_processpy文件)
 - [三、总结](#三总结)
 
@@ -18,12 +18,12 @@
 ### 结构说明：
 ```
 ├── hnn_preprocessing  
-│   └── embaddings_process.py  
+│   └── embddings_process.py  
 │   └── getStru2Vec.py
 │   └── process_single_corpus.py
 │   └── python_structured.py
 │   └── sqlang_structured.py
-│   └── word_dirt.py
+│   └── word_dict.py
 ```
 ### 文件说明
 
@@ -37,7 +37,6 @@
  - `Counter`： ：用于计数数据中元素的频率
 
 #### 2.1.3. 类和方法说明
-
 - `load_pickle(filename)`：以二进制读模式打开文件,加载pickle格式的数据。
 - `split_data(total_data, qids)`：统计数据出现的次数,根据数据出现的次数将其将分为单候选或多候选问题并存入对应列表。
 - `data_staqc_processing(filepath, save_single_path, save_multiple_path)`:针对staqc数据,读取文件内容,然后使用eval函数将字符串转换为Python数据结构。根据问题ID判断单候选和多候选问题,将数据以文本形式分别保存到对应的文件中。
@@ -53,7 +52,6 @@
  - `pickle`：用于读取和写入 pickle 文件
 
 #### 2.2.3. 类和方法说明
-
 - `load_pickle(filename)`：以二进制读模式打开文件,返回加载的pickle格式的数据。
 - `get_vocab(corpus1, corpus2)`：遍历输入的两个语料库中的所有数据，将所有单词存储到一个词汇表集合中，返回词汇表。
 - `vocab_prpcessing(filepath1,filepath2,save_path)`：调用load_pickle()函数加载语料库数据并调用get_vocab()函数获取词汇表,将仅存在于第二个语料库的词汇保存在词汇表中并保存到指定的文件路径。
@@ -91,7 +89,7 @@
 
 
 ---
-### sql_structured.py文件
+### sqlang_structured.py文件
 #### 2.4.1. 概述
   解析 SQL 代码，修复代码中的变量命名问题；
   代码重构，添加变量名的注释。
@@ -103,6 +101,7 @@
  - `sqlparse`：sql解析
  - `inflection`：用于进行单词的单复数转换
  - `nltk`：自然语言处理工具包，用于词性标注、分词和词形还原
+  
 #### 2.4.3. 类和方法说明
 - `string_scanner(s)`:定义了一个正则表达式扫描器，扫描字符串。
 - `tokenizeRegex(s)`:用正则表达式分词处理输入的字符串s，并返回处理后的结果。
@@ -152,7 +151,7 @@
 - `main(lang_type, split_num, source_path, save_path, context_func, query_func, code_func)`:读取源数据,调用parse函数处理数据,将所有数据组合成一个新的列表并保存结果。
 
 ---
-### embaddings_process.py文件
+### embddings_process.py文件
 #### 2.6.1. 概述
   从大词典中获取特定于于语料的词典；将数据处理成待打标签的形式
 #### 2.6.2. 导入依赖库
