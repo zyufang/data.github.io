@@ -34,14 +34,14 @@
 #### 2.1.2. 导入依赖库
 该文件导入了以下依赖库：
  - `pickle`：用于读取和写入 pickle 文件
- - `Counter`： ：用于计数数据中元素的频率
+ - `Counter`：用于计数数据中元素的频率
 
 #### 2.1.3. 类和方法说明
 - `load_pickle(filename)`：以二进制读模式打开文件,加载pickle格式的数据。
 - `split_data(total_data, qids)`：统计数据出现的次数,根据数据出现的次数将其将分为单候选或多候选问题并存入对应列表。
-- `data_staqc_processing(filepath, save_single_path, save_multiple_path)`:针对staqc数据,读取文件内容,然后使用eval函数将字符串转换为Python数据结构。根据问题ID判断单候选和多候选问题,将数据以文本形式分别保存到对应的文件中。
-- `data_large_processing(filepath, save_single_path, save_multiple_path)`:针对large数据,将pickle文件内容反序列化为Python数据结构。根据问题ID判断单候选和多候选问题,将数据序列化为pickle格式并分别保存到不同的文件中。
-- `def single_unlabeled_to_labeled(input_path, output_path)`:加载未标记的数据并为每个数据项添加标签1,表示它们是单候选问题,然后按照问题ID和标签对数据进行排序并保存。
+- `data_staqc_processing(filepath, save_single_path, save_multiple_path)`: 针对staqc数据,读取文件内容,然后使用eval函数将字符串转换为Python数据结构。根据问题ID判断单候选和多候选问题,将数据以文本形式分别保存到对应的文件中。
+- `data_large_processing(filepath, save_single_path, save_multiple_path)`: 针对large数据,将pickle文件内容反序列化为Python数据结构。根据问题ID判断单候选和多候选问题,将数据序列化为pickle格式并分别保存到不同的文件中。
+- `def single_unlabeled_to_labeled(input_path, output_path)`: 加载未标记的数据并为每个数据项添加标签1,表示它们是单候选问题,然后按照问题ID和标签对数据进行排序并保存。
 
 ---
 ### word_dict.py文件
@@ -74,7 +74,7 @@
 #### 2.3.3. 类和方法说明
 - `repair_program_io(code)`: 通过正则表达式匹配和文本处理来删除不必要的I/O格式符号。
 - `get_vars(ast_root)`：从给定的 AST 中提取并返回所有非加载（non-load）上下文的变量名，并且这些变量名会被排序后返回。
-- `get_vars_heuristics(code)`:从给定的代码字符串中提取变量名，使用启发式方法处理不完整的代码片段。
+- `get_vars_heuristics(code)`: 从给定的代码字符串中提取变量名，使用启发式方法处理不完整的代码片段。
 - `PythonParser(code)`: 将代码字符串解析为Token 序列，并且执行变量解析。
  └──`first_trial(_code)`: 对输入的 _code 进行词法分析，并检查是否能够成功生成至少一个词法单元。
 - `revert_abbrev(line)`: 缩略词处理，将常见的英语缩写还原为它们的原始形式。
@@ -85,7 +85,7 @@
 - `filter_part_invachar(line)`: 过滤掉Python代码中部分不常用的字符，以减少解析时的错误。
 - `python_code_parse(line)`: 对 Python 代码行进行预处理，并尝试解析它，最终返回一个由单词（或标识符）组成的列表。
 - `python_query_parse(line)`: 解析 python 查询语句，进行文本预处理,并返回一个处理过的单词列表。
-- `python_context_parse(line)`:#对输入的文本进行预处理，并返回一个处理过的单词列表。
+- `python_context_parse(line)`: 对输入的文本进行预处理，并返回一个处理过的单词列表。
 
 
 ---
@@ -103,17 +103,17 @@
  - `nltk`：自然语言处理工具包，用于词性标注、分词和词形还原
   
 #### 2.4.3. 类和方法说明
-- `string_scanner(s)`:定义了一个正则表达式扫描器，扫描字符串。
-- `tokenizeRegex(s)`:用正则表达式分词处理输入的字符串s，并返回处理后的结果。
+- `string_scanner(s)`: 定义了一个正则表达式扫描器，扫描字符串。
+- `tokenizeRegex(s)`: 用正则表达式分词处理输入的字符串s，并返回处理后的结果。
 - `SqlParser()`: SQL语句处理。  
-   └──`sanitizeSql(sql)`:对输入的SQL语句进行清理和标准化。  
-   └──`parseStrings(self, tok)`:可以根据配置对SQL语句中的字符串选择使用正则表达式分词处理或直接将字符串值设置为"CODSTR"。
-   └──`renameIdentifiers(self, tok)`:使用两个字典idMap和idMapInv以及一个计数器idCount来实现对SQL语句中的表名和列名的重命名,并对其他类型的token进行处理。
-   └──` _hash_(self)`:用于计算并返回对象的哈希值。  
-   └──`_init__(self, sql, regex=False, rename=True)`:定义了初始化方法,并对输入的SQL语句进行一系列的处理。
-   └──`getTokens(parse)`:从解析的SQL语句中提取tokens,对于类型为STRING的token使用空格进行分割,对于其他类型的token直接转换为字符串。  
+   └──`sanitizeSql(sql)`: 对输入的SQL语句进行清理和标准化。  
+   └──`parseStrings(self, tok)`: 可以根据配置对SQL语句中的字符串选择使用正则表达式分词处理或直接将字符串值设置为"CODSTR"。
+   └──`renameIdentifiers(self, tok)`: 使用两个字典idMap和idMapInv以及一个计数器idCount来实现对SQL语句中的表名和列名的重命名,并对其他类型的token进行处理。
+   └──` _hash_(self)`: 用于计算并返回对象的哈希值。  
+   └──`_init__(self, sql, regex=False, rename=True)`: 定义了初始化方法,并对输入的SQL语句进行一系列的处理。
+   └──`getTokens(parse)`: 从解析的SQL语句中提取tokens,对于类型为STRING的token使用空格进行分割,对于其他类型的token直接转换为字符串。  
    └──` removeWhitespaces(self, tok)`: 从SQL语句中移除所有的空白字符。  
-   └──`identifySubQueries(self, tokenList)`:在SQL语句中识别子查询，并将识别到的子查询的类型设置为SUBQUERY。
+   └──`identifySubQueries(self, tokenList)`: 在SQL语句中识别子查询，并将识别到的子查询的类型设置为SUBQUERY。
    └──`identifyLiterals(self, tokenList)`: 识别关键字、整数、十六进制数、浮点数、字符串、通配符和列名等各种类型的字面量,并将这些字面量的类型设置为相应的值。
    └──`identifyFunctions(self, tokenList)`: 从给定的token列表中识别SQL语句中的函数并设置ttype类型。  
    └──`identifyTables(self, tokenList)`: 在SQL语句中识别函数,并将识别到的函数的类型设置为FUNCTION。
@@ -127,7 +127,7 @@
 - `filter_part_invachar(line)`: 过滤掉SQL代码中部分不常用的字符，以减少解析时的错误。
 - `sqlang_code_parse(line)`: 对输入的代码行进行文本预处理和解析。
 - `sqlang_query_parse(line)`: 对输入的SQL语句调用函数进行过滤无效字符、预处理、分词处理、替换字符。
-- `sqlang_context_parse(line)`:#对输入的文本调用函数进行过滤无效字符、预处理、分词处理、替换字符
+- `sqlang_context_parse(line)`: 对输入的文本调用函数进行过滤无效字符、预处理、分词处理、替换字符
 
 ---
 ### getStru2Vec.py文件
@@ -141,14 +141,14 @@
  - `multiprocessing.Pool`：用于多进程处理
 
 #### 2.5.3. 类和方法说明
-- `multipro_python_query(data_list)`:对Python语料中的查询文本进行解析和分词处理。
-- `multipro_python_code(data_list)`:对Python语料中的代码文本进行解析和分词处理。
-- `multipro_python_context(data_list)`:对Python语料中的上下文文本进行解析和分词处理。
-- `multipro_sqlang_query(data_list)`:对SQL语料中的查询文本进行解析和分词处理。
+- `multipro_python_query(data_list)`: 对Python语料中的查询文本进行解析和分词处理。
+- `multipro_python_code(data_list)`: 对Python语料中的代码文本进行解析和分词处理。
+- `multipro_python_context(data_list)`: 对Python语料中的上下文文本进行解析和分词处理。
+- `multipro_sqlang_query(data_list)`: 对SQL语料中的查询文本进行解析和分词处理。
 - `multipro_sqlang_code(data_list)`: 对SQL语料中的代码文本进行解析和分词处理。
-- `multipro_sqlang_context(data_list)`:对SQL语料中的代码文本进行解析和分词处理。
-- `parse(data_list, split_num, context_func, query_func, code_func))`:并行处理数据。首先创建一个进程池并将数据列表分割成多个子列表。接着并行地对每一个数据子列表应用处理函数，并收集结果。
-- `main(lang_type, split_num, source_path, save_path, context_func, query_func, code_func)`:读取源数据,调用parse函数处理数据,将所有数据组合成一个新的列表并保存结果。
+- `multipro_sqlang_context(data_list)`: 对SQL语料中的代码文本进行解析和分词处理。
+- `parse(data_list, split_num, context_func, query_func, code_func))`: 并行处理数据。首先创建一个进程池并将数据列表分割成多个子列表。接着并行地对每一个数据子列表应用处理函数，并收集结果。
+- `main(lang_type, split_num, source_path, save_path, context_func, query_func, code_func)`: 读取源数据,调用parse函数处理数据,将所有数据组合成一个新的列表并保存结果。
 
 ---
 ### embddings_process.py文件
